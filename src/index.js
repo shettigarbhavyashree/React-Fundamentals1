@@ -15,7 +15,6 @@ const BookList = () => {
       <h1>Amazon Best Seller</h1>
       <section className="booklist">
         {books.map((book, index) => {
-          console.log(book)
           return <Book {...book} key={book.id} number={index} />
         })}
       </section>
@@ -25,9 +24,6 @@ const BookList = () => {
 
 const EventExamples = () => {
   const handleFormInput = (e) => {
-    console.log(e)
-    console.log(e.target.name)
-    console.log(e.target.value)
     console.log('handle form input')
   }
   const handleButtonClick = () => {
