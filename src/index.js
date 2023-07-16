@@ -1,17 +1,67 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import './index.css'
+import { books } from './book'
+import { Book } from './BookComp'
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const names = ['john', 'peter', 'susan']
+const newNames = names.map((name) => {
+  return <h1>{name}</h1>
+})
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const BookList = () => {
+  return (
+    <React.Fragment>
+      <h1>Amazon Best Seller</h1>
+      <section className="booklist">
+        {books.map((book, index) => {
+          console.log(book)
+          return <Book {...book} key={book.id} number={index} />
+        })}
+      </section>
+    </React.Fragment>
+  )
+}
+
+const EventExamples = () => {
+  const handleFormInput = (e) => {
+    console.log(e)
+    console.log(e.target.name)
+    console.log(e.target.value)
+    console.log('handle form input')
+  }
+  const handleButtonClick = () => {
+    console.log('handle button click')
+  }
+  const handleFormSubmission = (e) => {
+    e.preventDefault()
+    console.log('form submitted')
+  }
+  return (
+    <section>
+      <form>
+        <h2>Typical Form</h2>
+        <input
+          type="text"
+          name="example"
+          onChange={(e) => {
+            console.log(e.target.value)
+          }}
+          style={{ margin: '1rem 0' }}
+        />
+        <button type="submit" onClick={handleFormSubmission}>
+          submit
+        </button>
+        <div>
+          <button type="button" onClick={handleButtonClick}>
+            click me
+          </button>
+        </div>
+      </form>
+    </section>
+  )
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'))
+root.render(<BookList />)
+export default BookList
